@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  form(method='POST' action='')
+    div.form-group
+      label(for='login') Login:
+      input#login.form-control(type='text' name='login' required='true')
+
+    div.form-group
+      label(for='password') Mot de passe:
+      input#password.form-control(type='text' name='password' required='true')
+
+    button.btn.btn-primary(type='submit') Valider
+
