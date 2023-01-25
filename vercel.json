@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "scheduler",
+  "builds": [
+    { "src": "app.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/routes", "dest": "/app.js" }
+  ]
+}
