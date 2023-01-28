@@ -7,30 +7,32 @@ const dbName = process.env.DB_NAME;
 
 const User = {
 
-    async create(name, email, passwordHashed){
+    async createNewUser(username, passwordHashed){
         await client.connect();
         const db = client.db(dbName);
 
         const usersCollection = db.collection('users');
 
-        const userCreated = await usersCollection.insertOne({name:name, email:email, password: passwordHashed});
+        const userCreated = await usersCollection.insertOne({username:username, password: passwordHashed, admin:false});
 
         await client.close();
 
         return userCreated;
-    }
+    },
 
-    // async getByCategory(CategoryId) {
-    //
-    //     await client.connect();
-    //     const db = client.db(dbName);
-    //
-    //     debug(`Connected successfully to MongoDB server: ${uri}`);
-    //
-    //     const productsCollection = db.collection('products');
-    //
-    //     return await productsCollection.find({categoryId: new ObjectId(CategoryId)}).toArray();
-    // },
+    async getUser(username) {
+
+        await client.connect();
+        const db = client.db(dbName);
+
+        const usersCollection = db.collection('users');
+
+        const user = await usersCollection.findOne({username: username});
+
+        await client.close();
+
+        return user;
+    },
     //
     // getAll : async function () {
     //

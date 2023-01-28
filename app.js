@@ -4,14 +4,22 @@ const debug = require('debug')('http');
 const morgan = require('morgan');
 const express = require('express');
 const path = require('path');
-const session = require("express-session");
+
+
 const helmet = require('helmet');
 const compression = require('compression');
 const dotenv = require('dotenv');
-require('jsonwebtoken');
 dotenv.config();
 
 const app = express();
+
+const session = require("express-session");
+require('express-dynamic-helpers-patch')(app);
+app.dynamicHelpers({
+    session: function (req, res) {
+        return req.session;
+    }
+});
 
 // View engine setup
 app.use(express.static(path.join(__dirname, "public")));

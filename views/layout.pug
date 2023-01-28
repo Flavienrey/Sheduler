@@ -1,22 +1,40 @@
 doctype html
 html(lang='en')
+
     head
         title= "Scheduler"
+        link(rel="shortcut icon" href="#")
         meta(charset='utf-8')
         meta(name='viewport', content='width=device-width, initial-scale=1')
         link(rel="stylesheet" href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css' integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous")
+
     body
-        div.container-fluid
-            nav(class="navbar navbar-light bg-light justify-content-center")
-                a(class="navbar-brand mb-0" href="/") Scheduler
-                a(class="navbar-brand mb-0" href="/") Home
-                a(class="navbar-brand mb-0" href="ressources") Ressources
-                a(class="navbar-brand mb-0" href="users") Users
+            nav(class="navbar navbar-expand-lg navbar-light bg-light")
+                div.container-fluid
 
-                if user
-                    form.form-inline(method='POST' action="/logout")
-                        span.mr-3 #{user.firstname} #{user.lastname}
-                        button(class="btn btn-primary" type="submit") Déconnexion
+                    a(class="navbar-brand" href="/")
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-calendar-range" viewBox="0 0 16 16">
+                        <path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zM1 9h4a1 1 0 0 1 0 2H1V9z"/>
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                        </svg>
 
-            h1= title
+                        p.d-inline.ml-3 Scheduler
+
+                    div.navbar-nav
+                        a(class="nav-item nav-link" href="/") Home
+                        a(class="nav-item nav-link" href="/ressources") Ressources
+                        a(class="nav-item nav-link" href="/reservations") Reservations
+                        a(class="nav-item nav-link" href="/users") Users
+
+                    if(session.user)
+                        div.navbar-nav.ms-auto
+                            form.nav-item.nav-link.form-inline(method='POST' action="/logout")
+                                span.mr-3 Welcome #{session.user.username}!
+                                button(class="btn btn-primary" type="submit") Déconnexion
+
+                    if (!session.user)
+                        div.navbar-nav.ms-auto
+                            a(class="nav-item nav-link" href="/signup")
+                                button(class="btn btn-primary" type="submit") Sign Up
+
             block content
