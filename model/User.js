@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { MongoClient, ServerApiVersion, ObjectId} = require('mongodb');
+const { MongoClient, ServerApiVersion} = require('mongodb');
 
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
@@ -13,7 +13,7 @@ const User = {
 
         const usersCollection = db.collection('users');
 
-        const userCreated = await usersCollection.insertOne({username:username, password: passwordHashed, admin:false});
+        const userCreated = await usersCollection.insertOne({_id:username, password: passwordHashed, admin:false});
 
         await client.close();
 
