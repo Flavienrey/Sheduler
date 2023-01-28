@@ -2,22 +2,30 @@ extends layout
 
 block content
 
-    h1 LOGIN
-
-    form(method='POST' action='')
-        div.form-group
-            label(for='username') Username
-            input#username.form-control(type='text' name='username' required='true')
-
-        div.form-group
-            label(for='password') Password
-            input#password.form-control(type='password' name='password' required='true')
-
-        button.d-block.btn.btn-primary(type='submit') LOGIN
+    div.w-25.p-3.m-auto
 
         br
+
+        h1 LOGIN
+
         br
 
-        p.d-inline Need an account?
-        a.d-inline(href="/signup")  SIGN UP
+        form(method='POST' action='')
+            div.form-group
+                label(for='username') Username
+                input#username.form-control(type='text' name='username' required='true')
 
+            div.form-group
+                label(for='password') Password
+                input#password.form-control(type='password' name='password' required='true')
+
+            br
+
+            div.text-center
+                button.d-block.btn.btn-primary(type='submit' style="display:initial!important;") LOGIN
+
+            br
+            br
+
+            p.d-inline Need an account?
+            a.d-inline(href="/signup")  SIGN UP

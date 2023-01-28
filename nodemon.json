@@ -1,3 +1,9 @@
 {
-  "ext": "js,json,pug,html,css"
+  "ext": "js,json,pug,html,css",
+  "watch": [
+    "model",
+    "public",
+    "routes",
+    "views"
+  ]
 }

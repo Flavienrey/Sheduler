@@ -27,37 +27,12 @@ const User = {
 
         const usersCollection = db.collection('users');
 
-        const user = await usersCollection.findOne({username: username});
+        const user = await usersCollection.findOne({_id: username});
 
         await client.close();
 
         return user;
-    },
-    //
-    // getAll : async function () {
-    //
-    //     await client.connect();
-    //     const db = client.db(dbName);
-    //
-    //     const productsCollection = db.collection('products');
-    //
-    //     return productsCollection.find().toArray();
-    // },
-    //
-    // async getById(productId) {
-    //
-    //     const newId = new ObjectId(productId);
-    //     const products =  await Product.getAll();
-    //
-    //     for (let i=0; i<products.length;i++){
-    //         if(newId.equals(products[i]._id)){
-    //             return products[i];
-    //         }
-    //     }
-    //
-    //     return null;
-    // }
-
+    }
 }
 
 module.exports = User;
