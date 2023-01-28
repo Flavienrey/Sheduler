@@ -15,7 +15,6 @@
   "dependencies": {
     "argon2": "^0.30.3",
     "compression": "^1.7.4",
-    "debug": "^4.3.4",
     "dotenv": "^16.0.3",
     "express": "^4.17.3",
     "express-dynamic-helpers-patch": "^0.0.2",
