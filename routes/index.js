@@ -45,7 +45,7 @@ app.post('/login', async function (req, res) {
     const userInBDD = await User.getUser(username);
 
     if (userInBDD && await argon2.verify(userInBDD['password'], password)) {
-        req.session.user = {username: userInBDD['username'], admin: userInBDD['admin']};
+        req.session.user = {username: userInBDD['_id'], admin: userInBDD['admin']};
         res.redirect("/home");
     }
 
