@@ -6,7 +6,7 @@ const app = express.Router();
 dotenv.config();
 
 const User = require("../model/User");
-const path = require("path");
+require("path");
 
 app.get('/', function(req, res) {
     if(req?.session?.user){
