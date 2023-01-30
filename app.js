@@ -1,6 +1,5 @@
 // Modules
-require('dotenv').config()
-const debug = require('debug')('http');
+require('dotenv').config();
 const morgan = require('morgan');
 const express = require('express');
 const path = require('path');
