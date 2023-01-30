@@ -41,7 +41,7 @@ app.use(session({
 
 
 //Routes
-const routesForIndexes = require(path.join(__dirname,"routes/index.js"));
+const routesForIndexes = require(path.join(__dirname,"routes/routes.js"));
 
 app.use(routesForIndexes);
 

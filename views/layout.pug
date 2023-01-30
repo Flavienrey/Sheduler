@@ -23,18 +23,20 @@ html(lang='en')
 
                     div.navbar-nav
                         a(class="nav-item nav-link" href="/") Home
-                        a(class="nav-item nav-link" href="/ressources") Ressources
-                        a(class="nav-item nav-link" href="/reservations") Reservations
-                        a(class="nav-item nav-link" href="/users") Users
+                        a(class="nav-item nav-link" href="/add-a-resource") Add a resource
+                        a(class="nav-item nav-link" href="/manage-resources") Manage resources
+                        a(class="nav-item nav-link" href="/book-a-resource") Book a resource
+                        a(class="nav-item nav-link" href="/manage-reservations") Manage reservations
+                        a(class="nav-item nav-link" href="/users") Find by user
 
                     div.w-25
-                        if(session.user)
+                        if(session && session.user)
                             div.navbar-nav.ms-auto
                                 form.nav-item.nav-link.form-inline(method='POST' action="/logout")
                                     span.mr-3 Welcome #{session.user.username}!
-                                    button(class="btn btn-primary" type="submit") Déconnexion
+                                    button(class="btn btn-primary" type="submit") Disconnect
 
-                        if (!session.user)
+                        else
                             div.navbar-nav.ms-auto
                                 a(class="nav-item nav-link" href="/login")
                                     button(class="btn btn-primary" type="submit") Login

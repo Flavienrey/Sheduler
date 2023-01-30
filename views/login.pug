@@ -10,6 +10,20 @@ block content
 
         br
 
+        if(operation)
+            b #{operation}
+            br
+            b #{action}
+            br
+            br
+
+        if(session && session.signup)
+            b Registration successfully proceeded!
+            br
+            b Please login now
+            br
+            br
+
         form(method='POST' action='')
             div.form-group
                 label(for='username') Username

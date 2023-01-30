@@ -13,6 +13,12 @@ const User = {
 
         const usersCollection = db.collection('users');
 
+        let oldUser = await usersCollection.findOne({_id: username});
+
+        if( oldUser != null){
+            return null;
+        }
+
         const userCreated = await usersCollection.insertOne({_id:username, password: passwordHashed, admin:false});
 
         await client.close();

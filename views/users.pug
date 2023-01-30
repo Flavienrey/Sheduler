@@ -1,0 +1,57 @@
+extends layout
+
+block content
+
+    div.w-50.p-3.m-auto
+
+        br
+        br
+
+        h3 Search an user and its reservations
+
+        br
+
+        div.w-25.p-3.m-auto
+            form(method='POST' action='')
+
+                div.form-group
+                    label(for='name') Pseudonym
+                    input#name.form-control(type='text' name='name' value=user required='true')
+
+                br
+
+                div.text-center
+                    button.d-block.btn.btn-primary(type='submit' style="width:100px;display:initial!important;") Find user bookings
+
+        if(reservations && reservations.length>=1)
+
+            br
+
+            table.align-items-center.m-auto.text-center(style="border-collapse: collapse;\n" +
+            "    margin: 25px 0;font-size: 0.9em;min-width: 400px;\n" +
+            "    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);" +
+            "    background-color: #85C1E9;color: #ffffff;\n" +
+            "    text-align: left;padding: 12px 15px;border-bottom: 1px solid #dddddd;")
+
+                thead(style="background-color: #85C1E9;color: #ffffff;padding: 12px 15px;")
+                    th(style="padding: 12px 15px;") Resource
+                    th(style="padding: 12px 15px;") Start
+                    th(style="padding: 12px 15px;") End
+
+
+                tbody(stule="border-bottom: 1px solid #dddddd;")
+                    each reservation in reservations
+
+                        tr(style="background-color: #85C1E9;\n" +
+                        "    color: #ffffff;\n" +
+                        "    text-align: left;" +
+                        "border-bottom: 1px solid #dddddd;")
+
+                            td(style="padding: 12px 15px;") #{reservation.resourceName}
+                            td(style="padding: 12px 15px;") #{reservation.startingDate}
+                            td(style="padding: 12px 15px;") #{reservation.endingDate}
+
+        else
+            br
+
+            b User didn't book resources yet!

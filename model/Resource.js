@@ -7,13 +7,13 @@ const dbName = process.env.DB_NAME;
 
 const Resource = {
 
-    async createNewResource(name, architecture){
+    async createNewResource(resourceName, resourceArchitecture, numberOfCores, ramQuantity){
         await client.connect();
         const db = client.db(dbName);
 
         const resourcesCollection = db.collection('resources');
 
-        const resourceCreated = await resourcesCollection.insertOne({name: name, architecture:architecture});
+        const resourceCreated = await resourcesCollection.insertOne({resourceName: resourceName, resourceArchitecture:resourceArchitecture, numberOfCores:numberOfCores,ramQuantity:ramQuantity });
 
         await client.close();
 
@@ -25,13 +25,27 @@ const Resource = {
         await client.connect();
         const db = client.db(dbName);
 
-        const resourcesCollection = db.collection('users');
+        const resourcesCollection = db.collection('resources');
 
         const resource = await resourcesCollection.findOne({_id: name});
 
         await client.close();
 
         return resource;
+    },
+
+    async getAllResources(){
+        await client.connect();
+        const db = client.db(dbName);
+
+        const resourcesCollection = db.collection('resources');
+
+        const resources = await resourcesCollection.find().toArray();
+
+        await client.close();
+
+        return resources;
+
     }
 }
 

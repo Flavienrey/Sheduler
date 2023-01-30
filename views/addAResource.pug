@@ -1,0 +1,43 @@
+extends layout
+
+block content
+
+    if(session.user.admin)
+        div.w-25.p-3.m-auto
+
+            br
+
+            h3 Add a new resource
+
+            br
+
+            b #{operation}
+
+                br
+
+            form(method='POST' action='')
+                div.form-group
+                    label(for='resourceName') Name
+                    input#resourceName.form-control(type='text' name='resourceName' required='true')
+
+                div.form-group
+                    label(for='resourceArchitecture') Architecture CPU
+                    input#resourceArchitecture.form-control(type='text' name='resourceArchitecture' required='false')
+
+                div.form-group
+                    label(for='numberOfCores') Number of Cores
+                    input#numberOfCores.form-control(type='number' name='numberOfCores' required='false')
+
+                div.form-group
+                    label(for='ramQuantity') Quantity of RAM (GB)
+                    input#ramQuantity.form-control(type='number' name='ramQuantity' required='false')
+
+                br
+
+                div.text-center
+                    button.d-block.btn.btn-primary(type='submit' style="display:initial!important;") ADD
+    else
+
+        br
+
+        h4 You must be an administrator to add new resources

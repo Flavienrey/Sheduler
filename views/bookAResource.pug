@@ -1,0 +1,41 @@
+extends layout
+
+block content
+
+
+    div.w-50.p-3.m-auto
+
+        br
+
+        h3 Book resources
+
+        br
+
+        h4 Resources
+
+        b #{operation}
+
+            br
+
+        form(method='POST' action='')
+
+            div.form-group
+                if(resources)
+                    each resource in resources
+                        label.d-inline-block.pl-3.pr-3.pt-2(for=resource.resourceName style="vertical-align: middle;") #{resource.resourceName}
+                        input.form-control.d-inline-block.pl-3.pr-3(type='checkbox' style="width:20px;vertical-align: middle;" name="tickedResources[]" value=resource.resourceName)
+
+
+            div.form-group
+                label(for='startingDate') Starting Date
+                input#startingDate.form-control(type='datetime-local' name='startingDate' required='true')
+
+            div.form-group
+                label(for='endingDate') Ending Date
+                input#endingDate.form-control(type='datetime-local' name='endingDate' required='false')
+
+            br
+
+            div.text-center
+                button.d-block.btn.btn-primary(type='submit' style="display:initial!important;") Book resource(s)
+
