@@ -47,7 +47,7 @@ app.use(routesForIndexes);
 
 // Server start
 app.listen(process.env.PORT, () => {
-    debug(`Listening on port ${process.env.PORT}`);
+    console.log(`Listening on port ${process.env.PORT}`);
 });
 
 // Export the Express API
