@@ -2,7 +2,7 @@
   "name": "scheduler",
   "version": "1.0.0",
   "description": "Ressources scheduler",
-  "homepage": "A remplir avec l'url",
+  "homepage": "https://sheduler-amber.vercel.app/",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
