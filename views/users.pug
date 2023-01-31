@@ -7,7 +7,7 @@ block content
         br
         br
 
-        h3 Search an user and its reservations
+        h3 Search users
 
         br
 
@@ -16,14 +16,14 @@ block content
 
                 div.form-group
                     label(for='name') Pseudonym
-                    input#name.form-control(type='text' name='name' value=user required='true')
+                    input#name.form-control(type='text' name='name' required='true')
 
                 br
 
                 div.text-center
-                    button.d-block.btn.btn-primary(type='submit' style="width:100px;display:initial!important;") Find user bookings
+                    button.d-block.btn.btn-primary(type='submit' style="width:100px;display:initial!important;") Find user
 
-        if(reservations && reservations.length>=1)
+        if(listUsers)
 
             br
 
@@ -34,24 +34,21 @@ block content
             "    text-align: left;padding: 12px 15px;border-bottom: 1px solid #dddddd;")
 
                 thead(style="background-color: #85C1E9;color: #ffffff;padding: 12px 15px;")
-                    th(style="padding: 12px 15px;") Resource
-                    th(style="padding: 12px 15px;") Start
-                    th(style="padding: 12px 15px;") End
-
+                    th(style="padding: 12px 15px;") Pseudonym
+                    th(style="padding: 12px 15px;") Admin
 
                 tbody(stule="border-bottom: 1px solid #dddddd;")
-                    each reservation in reservations
+                    each entry in listUsers
 
                         tr(style="background-color: #85C1E9;\n" +
                         "    color: #ffffff;\n" +
-                        "    text-align: left;" +
+                        "    text-align: center;" +
                         "border-bottom: 1px solid #dddddd;")
 
-                            td(style="padding: 12px 15px;") #{reservation.resourceName}
-                            td(style="padding: 12px 15px;") #{reservation.startingDate}
-                            td(style="padding: 12px 15px;") #{reservation.endingDate}
+                            td(style="padding: 12px 15px;") #{entry._id}
+                            td(style="padding: 12px 15px;") #{entry.admin}
 
         else
             br
 
-            b User didn't book resources yet!
+            b User doesn't exist !

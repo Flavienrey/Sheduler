@@ -22,6 +22,7 @@ app.dynamicHelpers({
 
 // View engine setup
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(__dirname));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -43,7 +44,6 @@ app.use(session({
 const routesForIndexes = require(path.join(__dirname,"routes/routes.js"));
 
 app.use(routesForIndexes);
-
 
 // Server start
 app.listen(process.env.PORT, () => {

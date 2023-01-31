@@ -38,6 +38,19 @@ const User = {
         await client.close();
 
         return user;
+    },
+    async getAll() {
+
+        await client.connect();
+        const db = client.db(dbName);
+
+        const usersCollection = db.collection('users');
+
+        const user = await usersCollection.find().toArray();
+
+        await client.close();
+
+        return user;
     }
 }
 

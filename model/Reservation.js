@@ -49,6 +49,19 @@ const Reservation = {
         await client.close();
 
         return reservations;
+    },
+
+    async getAll(){
+        await client.connect();
+        const db = client.db(dbName);
+
+        const reservationsCollection = db.collection('reservations');
+
+        const reservations = await reservationsCollection.find().toArray();
+
+        await client.close();
+
+        return reservations;
     }
 }
 

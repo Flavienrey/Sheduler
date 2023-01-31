@@ -1,0 +1,40 @@
+extends layout
+
+block content
+
+    br
+
+    h3 Current bookings
+
+    br
+
+    div.w-50.p-3.m-auto
+        h5 Search an user and its reservations
+
+        div.w-25.p-3.m-auto
+            form(method='POST' action='')
+
+                div.form-group
+                    label(for='name') Pseudonym
+                    input#name.form-control(type='text' name='name')
+
+
+
+                div.text-center
+                    button.d-block.btn.btn-primary(type='submit' style="width:100px;display:initial!important;") Find user bookings
+
+    if(events)
+
+        div.container(style="display:flex;flex-wrap:wrap;justify-content: center;")
+            each day in events
+
+                div.card.w-25.rounded-0
+                    div.card-body.p-0
+
+                        h5.card-header #{day.date}
+
+                        each reservation in day.reservations
+                            p.card-text.small.mt-2.mb-0 #{reservation.start} -> #{reservation.end} | #{reservation.resourceName} by #{reservation.user}
+                            p.card-text.small.mb-2
+
+    br
