@@ -173,11 +173,18 @@ router.get('/view-reservations', auth, async function (req, res) {
 
     const reservations = await Reservation.getAll();
 
-   const events = determineEvents(reservations);
+    if(reservations.length >= 1){
+        const events = determineEvents(reservations);
 
-    res.render('viewReservations', {
-        user: req.session.user.username, admin: req.session.user.admin, events
-    });
+        res.render('viewReservations', {
+            user: req.session.user.username, admin: req.session.user.admin, events
+        });
+    }
+    else {
+        res.render('viewReservations', {
+            user: req.session.user.username, admin: req.session.user.admin, error:"No reservations for entered user"
+        });
+    }
 });
 
 router.post('/view-reservations', auth, async function (req, res) {
@@ -185,11 +192,19 @@ router.post('/view-reservations', auth, async function (req, res) {
     if (req.body.name) {
         let reservations = await Reservation.getAllReservationsForUser(req.body.name);
 
-        const events = determineEvents(reservations);
+        if(reservations.length >= 1){
+            const events = determineEvents(reservations);
 
-        res.render('viewReservations', {
-            user: req.session.user.username, admin: req.session.user.admin, events
-        });
+            res.render('viewReservations', {
+                user: req.session.user.username, admin: req.session.user.admin, events
+            });
+        }
+        else {
+
+            res.render('viewReservations', {
+                user: req.session.user.username, admin: req.session.user.admin, error:"No reservations for entered user"
+            });
+        }
     }
     else{
         res.redirect('view-reservations');
@@ -211,11 +226,19 @@ router.post('/users', auth, async function (req, res) {
         const singleUser = await User.getUser(req.body.name);
         const listUsers = new Array(singleUser);
 
-        res.render("users", {
-            user: req.session.user.username,
-            admin: req.session.user.admin,
-            listUsers
-        });
+        if(listUsers[0] != null) {
+            res.render("users", {
+                user: req.session.user.username,
+                admin: req.session.user.admin,
+                listUsers
+            });
+        }else{
+            res.render("users", {
+                user: req.session.user.username,
+                admin: req.session.user.admin,
+                error: "User is not registered yet"
+            });
+        }
     }
     else{
         res.redirect('/users');

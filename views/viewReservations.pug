@@ -4,7 +4,7 @@ block content
 
     br
 
-    h3 Current bookings
+    h3 Current reservations
 
     br
 
@@ -15,13 +15,16 @@ block content
             form(method='POST' action='')
 
                 div.form-group
-                    label(for='name') Pseudonym
+                    label(for='name') User
                     input#name.form-control(type='text' name='name')
 
 
 
                 div.text-center
                     button.d-block.btn.btn-primary(type='submit' style="width:100px;display:initial!important;") Find user bookings
+
+    if(error)
+        b #{error}
 
     if(events)
 

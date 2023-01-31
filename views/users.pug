@@ -16,12 +16,15 @@ block content
 
                 div.form-group
                     label(for='name') Pseudonym
-                    input#name.form-control(type='text' name='name' required='true')
+                    input#name.form-control(type='text' name='name' )
 
                 br
 
                 div.text-center
                     button.d-block.btn.btn-primary(type='submit' style="width:100px;display:initial!important;") Find user
+
+        if(error)
+            error
 
         if(listUsers)
 
