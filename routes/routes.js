@@ -135,10 +135,6 @@ router.post('/add-a-resource', auth, async function (req, res) {
     }
 });
 
-router.get('/manage-resources', auth, function (req, res) {
-    res.render("manageResources");
-});
-
 router.get('/book-a-resource', auth, async function (req, res) {
 
     const resources = await Resource.getAllResources();
